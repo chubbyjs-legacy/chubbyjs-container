@@ -1,0 +1,59 @@
+{
+  "name": "chubbyjs-container",
+  "version": "1.0.1",
+  "description": "A simple PSR-11 container implementation.",
+  "keywords": [
+    "chubbyphp",
+    "container",
+    "psr-11"
+  ],
+  "author": "Dominik Zogg",
+  "license": "MIT",
+  "repository": "chubbyjs/chubbyjs-container",
+  "scripts": {
+    "cs-fix": "prettier --write src tests",
+    "cs": "prettier --check src tests",
+    "test": "jest",
+    "infection": "stryker run",
+    "build": "tsc",
+    "prepare": "rm -Rf dist && npm run build && npm run cs && npm run test"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "lines": 100
+      }
+    }
+  },
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 4,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "dependencies": {
+    "psr-container": "^1.0.0"
+  },
+  "devDependencies": {
+    "@stryker-mutator/core": "^4.1.0",
+    "@stryker-mutator/jest-runner": "^4.1.0",
+    "@types/jest": "^26.0.15",
+    "coveralls": "^3.1.0",
+    "jest": "^26.6.1",
+    "moq.ts": "^6.4.0",
+    "prettier": "2.1.2",
+    "ts-jest": "^26.4.3",
+    "typescript": "^4.0.5"
+  }
+}
