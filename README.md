@@ -88,10 +88,22 @@ container.factory(MyService.name, (container: PsrContainerInterface, previous?: 
     }
 
     const myService: MyService = previous(container);
+
     myService.setLogger(Logger.name);
 
     return myService;
 });
+```
+
+#### Factory with Parameter
+
+```ts
+import MinimalContainer from 'chubbyjs-container/dist/MinimalContainer';
+import Parameter from 'chubbyjs-container/dist/Parameter';
+
+const container = new MinimalContainer();
+
+container.factory('key', Parameter('value'));
 ```
 
 #### Get
@@ -170,6 +182,7 @@ container.prototypeFactory(MyService.name, (container: PsrContainerInterface, pr
     }
 
     const myService: MyService = previous(container);
+
     myService.setLogger(Logger.name);
 
     return myService;
