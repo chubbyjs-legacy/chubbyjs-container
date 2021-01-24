@@ -1,6 +1,6 @@
 {
   "name": "chubbyjs-container",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A simple PSR-11 container implementation.",
   "keywords": [
     "chubbyjs",
@@ -43,7 +43,7 @@
     "node": ">=10"
   },
   "dependencies": {
-    "psr-container": "^1.0.0"
+    "psr-container": "^1.1.0"
   },
   "devDependencies": {
     "@stryker-mutator/core": "^4.1.0",

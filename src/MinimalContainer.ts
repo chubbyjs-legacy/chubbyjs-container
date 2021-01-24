@@ -32,9 +32,9 @@ class MinimalContainer implements ContainerInterface {
         return this;
     }
 
-    public get(id: string): any {
+    public get<T>(id: string): T {
         if (!this.storedServices.has(id)) {
-            this.storedServices.set(id, this.create(id));
+            this.storedServices.set(id, this.create<T>(id));
         }
 
         return this.storedServices.get(id);
@@ -44,7 +44,7 @@ class MinimalContainer implements ContainerInterface {
         return this.storedFactories.has(id);
     }
 
-    private create(id: string): any {
+    private create<T>(id: string): T {
         const factory = this.storedFactories.get(id);
 
         if (!factory) {

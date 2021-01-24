@@ -60,15 +60,15 @@ class Container implements ContainerInterface {
         return this;
     }
 
-    public get(id: string): any {
+    public get<T>(id: string): T {
         const prototypeFactory = this.storedPrototypeFactories.get(id);
 
         if (prototypeFactory) {
-            return this.createFromPrototypeFactory(id, prototypeFactory);
+            return this.createFromPrototypeFactory<T>(id, prototypeFactory);
         }
 
         if (!this.storedServices.has(id)) {
-            this.storedServices.set(id, this.create(id));
+            this.storedServices.set(id, this.create<T>(id));
         }
 
         return this.storedServices.get(id);
@@ -78,7 +78,7 @@ class Container implements ContainerInterface {
         return this.storedFactories.has(id) || this.storedPrototypeFactories.has(id);
     }
 
-    private create(id: string): any {
+    private create<T>(id: string): T {
         const factory = this.storedFactories.get(id);
 
         if (!factory) {
@@ -92,7 +92,7 @@ class Container implements ContainerInterface {
         }
     }
 
-    private createFromPrototypeFactory(id: string, prototypeFactory: FactoryInterface): any {
+    private createFromPrototypeFactory<T>(id: string, prototypeFactory: FactoryInterface): T {
         try {
             return prototypeFactory(this);
         } catch (e) {
