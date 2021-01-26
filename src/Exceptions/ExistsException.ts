@@ -1,4 +1,4 @@
-import PsrContainerExceptionInterface from 'psr-container/dist/ContainerExceptionInterface';
+import PsrContainerExceptionInterface from '@chubbyjs/psr-container/dist/ContainerExceptionInterface';
 
 class ExistsException implements PsrContainerExceptionInterface {
     name: string;

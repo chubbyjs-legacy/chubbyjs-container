@@ -1,4 +1,4 @@
-import PsrContainerInterface from 'psr-container/dist/ContainerInterface';
+import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterface';
 
 interface FactoryInterface {
     (container: PsrContainerInterface, previous?: FactoryInterface): any;

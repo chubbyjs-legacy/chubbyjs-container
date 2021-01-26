@@ -1,4 +1,4 @@
-import PsrNotFoundExceptionInterface from 'psr-container/dist/NotFoundExceptionInterface';
+import PsrNotFoundExceptionInterface from '@chubbyjs/psr-container/dist/NotFoundExceptionInterface';
 
 class NotFoundException implements PsrNotFoundExceptionInterface {
     name: string;

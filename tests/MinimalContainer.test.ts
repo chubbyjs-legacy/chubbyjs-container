@@ -1,6 +1,6 @@
 import FactoryInterface from '../src/FactoryInterface';
 import MinimalContainer from '../src/MinimalContainer';
-import PsrContainerInterface from 'psr-container/dist/ContainerInterface';
+import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterface';
 
 test('construct', () => {
     const container = new MinimalContainer(

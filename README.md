@@ -23,14 +23,14 @@ A PSR-11 container implementation.
 ## Requirements
 
  * node: 10
- * [psr-container][2]: ^1.0.0
+ * [@chubbyjs/psr-container][2]: ^1.0.0
 
 ## Installation
 
-Through [NPM](https://www.npmjs.com) as [chubbyjs-container][1].
+Through [NPM](https://www.npmjs.com) as [@chubbyjs/chubbyjs-container][1].
 
 ```sh
-npm i chubbyjs-container@1.0
+npm i @chubbyjs/chubbyjs-container@1.0
 ```
 
 ## Usage
@@ -45,9 +45,9 @@ There are two PSR-11 implementations:
 #### Factories
 
 ```ts
-import FactoryInterface from 'chubbyjs-container/dist/FactoryInterface';
+import FactoryInterface from '@chubbyjs/chubbyjs-container/dist/FactoryInterface';
 import Logger from 'some-logger/dist/Logger';
-import MinimalContainer from 'chubbyjs-container/dist/MinimalContainer';
+import MinimalContainer from '@chubbyjs/chubbyjs-container/dist/MinimalContainer';
 import MyService from './Service/MyService';
 import PsrContainerInterface from 'psr-container/dist/ContainerInterface';
 
@@ -63,9 +63,9 @@ container.factories(
 #### Factory
 
 ```ts
-import FactoryInterface from 'chubbyjs-container/dist/FactoryInterface';
+import FactoryInterface from '@chubbyjs/chubbyjs-container/dist/FactoryInterface';
 import Logger from 'some-logger/dist/Logger';
-import MinimalContainer from 'chubbyjs-container/dist/MinimalContainer';
+import MinimalContainer from '@chubbyjs/chubbyjs-container/dist/MinimalContainer';
 import MyService from './Service/MyService';
 import PsrContainerInterface from 'psr-container/dist/ContainerInterface';
 
@@ -98,8 +98,8 @@ container.factory(MyService.name, (container: PsrContainerInterface, previous?: 
 #### Factory with Parameter
 
 ```ts
-import MinimalContainer from 'chubbyjs-container/dist/MinimalContainer';
-import Parameter from 'chubbyjs-container/dist/Parameter';
+import MinimalContainer from '@chubbyjs/chubbyjs-container/dist/MinimalContainer';
+import Parameter from '@chubbyjs/chubbyjs-container/dist/Parameter';
 
 const container = new MinimalContainer();
 
@@ -109,7 +109,7 @@ container.factory('key', Parameter('value'));
 #### Get
 
 ```ts
-import MinimalContainer from 'chubbyjs-container/dist/MinimalContainer';
+import MinimalContainer from '@chubbyjs/chubbyjs-container/dist/MinimalContainer';
 import MyService from './Service/MyService';
 
 const container = new MinimalContainer();
@@ -120,7 +120,7 @@ container.get(MyService.name);
 #### Has
 
 ```ts
-import MinimalContainer from 'chubbyjs-container/dist/MinimalContainer';
+import MinimalContainer from '@chubbyjs/chubbyjs-container/dist/MinimalContainer';
 import MyService from './Service/MyService';
 
 const container = new MinimalContainer();
@@ -137,8 +137,8 @@ All methods of the `MinimalContainer` and the following:
 **each get will return a new instance**
 
 ```ts
-import Container from 'chubbyjs-container/dist/Container';
-import FactoryInterface from 'chubbyjs-container/dist/FactoryInterface';
+import Container from '@chubbyjs/chubbyjs-container/dist/Container';
+import FactoryInterface from '@chubbyjs/chubbyjs-container/dist/FactoryInterface';
 import Logger from 'some-logger/dist/Logger';
 import MyService from './Service/MyService';
 import PsrContainerInterface from 'psr-container/dist/ContainerInterface';
@@ -157,8 +157,8 @@ container.prototypeFactories(
 **each get will return a new instance**
 
 ```ts
-import Container from 'chubbyjs-container/dist/Container';
-import FactoryInterface from 'chubbyjs-container/dist/FactoryInterface';
+import Container from '@chubbyjs/chubbyjs-container/dist/Container';
+import FactoryInterface from '@chubbyjs/chubbyjs-container/dist/FactoryInterface';
 import Logger from 'some-logger/dist/Logger';
 import MyService from './Service/MyService';
 import PsrContainerInterface from 'psr-container/dist/ContainerInterface';
@@ -193,6 +193,6 @@ container.prototypeFactory(MyService.name, (container: PsrContainerInterface, pr
 
 Dominik Zogg 2020
 
-[1]: https://www.npmjs.com/package/chubbyjs-container
+[1]: https://www.npmjs.com/package/@chubbyjs/chubbyjs-container
 
-[2]: https://www.npmjs.com/package/psr-container
+[2]: https://www.npmjs.com/package/@chubbyjs/psr-container

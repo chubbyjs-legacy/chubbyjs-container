@@ -1,7 +1,7 @@
 import { Mock } from 'moq.ts';
 import Factory from '../src/Factory';
 import FactoryInterface from '../src/FactoryInterface';
-import PsrContainerInterface from 'psr-container/dist/ContainerInterface';
+import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterface';
 
 test('factory', () => {
     const container = new Mock<PsrContainerInterface>().object();

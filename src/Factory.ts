@@ -1,5 +1,5 @@
 import FactoryInterface from './FactoryInterface';
-import PsrContainerInterface from 'psr-container/dist/ContainerInterface';
+import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterface';
 
 const Factory = (previous: FactoryInterface, factory: FactoryInterface): FactoryInterface => {
     return (container: PsrContainerInterface) => {
