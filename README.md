@@ -49,7 +49,7 @@ import FactoryInterface from '@chubbyjs/chubbyjs-container/dist/FactoryInterface
 import Logger from 'some-logger/dist/Logger';
 import MinimalContainer from '@chubbyjs/chubbyjs-container/dist/MinimalContainer';
 import MyService from './Service/MyService';
-import PsrContainerInterface from 'psr-container/dist/ContainerInterface';
+import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterface';
 
 const container = new MinimalContainer();
 
@@ -67,7 +67,7 @@ import FactoryInterface from '@chubbyjs/chubbyjs-container/dist/FactoryInterface
 import Logger from 'some-logger/dist/Logger';
 import MinimalContainer from '@chubbyjs/chubbyjs-container/dist/MinimalContainer';
 import MyService from './Service/MyService';
-import PsrContainerInterface from 'psr-container/dist/ContainerInterface';
+import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterface';
 
 const container = new MinimalContainer();
 
@@ -141,7 +141,7 @@ import Container from '@chubbyjs/chubbyjs-container/dist/Container';
 import FactoryInterface from '@chubbyjs/chubbyjs-container/dist/FactoryInterface';
 import Logger from 'some-logger/dist/Logger';
 import MyService from './Service/MyService';
-import PsrContainerInterface from 'psr-container/dist/ContainerInterface';
+import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterface';
 
 const container = new Container();
 
@@ -161,7 +161,7 @@ import Container from '@chubbyjs/chubbyjs-container/dist/Container';
 import FactoryInterface from '@chubbyjs/chubbyjs-container/dist/FactoryInterface';
 import Logger from 'some-logger/dist/Logger';
 import MyService from './Service/MyService';
-import PsrContainerInterface from 'psr-container/dist/ContainerInterface';
+import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterface';
 
 const container = new Container();
 
