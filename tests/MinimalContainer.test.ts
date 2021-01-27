@@ -4,7 +4,7 @@ import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterfa
 
 test('construct', () => {
     const container = new MinimalContainer(
-        new Map<string, FactoryInterface>().set('id', () => {
+        new Map<string, FactoryInterface>().set('id', (): {} => {
             return {};
         }),
     );
@@ -16,7 +16,7 @@ test('factories', () => {
     const container = new MinimalContainer();
 
     container.factories(
-        new Map<string, FactoryInterface>().set('id', () => {
+        new Map<string, FactoryInterface>().set('id', (): {} => {
             return {};
         }),
     );
@@ -27,7 +27,7 @@ test('factories', () => {
 test('factory', () => {
     const container = new MinimalContainer();
 
-    container.factory('id', () => {
+    container.factory('id', (): {} => {
         return {};
     });
 
@@ -37,25 +37,38 @@ test('factory', () => {
 test('factory extend', () => {
     const container = new MinimalContainer();
 
-    container.factory('id', () => {
-        return new Map<string, string>().set('key1', 'value1');
-    });
-    container.factory('id', (container: PsrContainerInterface, previous?: FactoryInterface) => {
-        if (previous) {
+    container.factory(
+        'id',
+        (): Map<string, string> => {
+            return new Map<string, string>().set('key1', 'value1');
+        },
+    );
+    container.factory(
+        'id',
+        (container: PsrContainerInterface, previous?: FactoryInterface): Map<string, string> => {
+            if (!previous) {
+                throw Error('Missing previous');
+            }
+
             const object: Map<string, string> = previous(container);
             object.set('key2', 'value2');
 
             return object;
-        }
-    });
-    container.factory('id', (container: PsrContainerInterface, previous?: FactoryInterface) => {
-        if (previous) {
+        },
+    );
+    container.factory(
+        'id',
+        (container: PsrContainerInterface, previous?: FactoryInterface): Map<string, string> => {
+            if (!previous) {
+                throw Error('Missing previous');
+            }
+
             const object: Map<string, string> = previous(container);
             object.set('key3', 'value3');
 
             return object;
-        }
-    });
+        },
+    );
 
     const service: Map<string, string> = container.get('id');
 
@@ -70,17 +83,25 @@ test('factory replace', () => {
     container.factory('id', () => {
         throw new Error('Should not be called!');
     });
-    container.factory('id', () => {
-        return new Map<string, string>().set('key1', 'value1');
-    });
-    container.factory('id', (container: PsrContainerInterface, previous?: FactoryInterface) => {
-        if (previous) {
+    container.factory(
+        'id',
+        (): Map<string, string> => {
+            return new Map<string, string>().set('key1', 'value1');
+        },
+    );
+    container.factory(
+        'id',
+        (container: PsrContainerInterface, previous?: FactoryInterface): Map<string, string> => {
+            if (!previous) {
+                throw Error('Missing previous');
+            }
+
             const object: Map<string, string> = previous(container);
             object.set('key2', 'value2');
 
             return object;
-        }
-    });
+        },
+    );
 
     const service: Map<string, string> = container.get('id');
 
@@ -91,13 +112,13 @@ test('factory replace', () => {
 test('factory replace after service instanciated', () => {
     const container = new MinimalContainer();
 
-    container.factory('id', () => {
+    container.factory('id', (): {} => {
         return {};
     });
 
     const service = container.get('id');
 
-    container.factory('id', () => {
+    container.factory('id', (): {} => {
         return {};
     });
 
@@ -113,7 +134,7 @@ test('get with missing id', () => {
 test('get with factory', () => {
     const container = new MinimalContainer();
 
-    container.factory('id', () => {
+    container.factory('id', (): {} => {
         return {};
     });
 
@@ -143,7 +164,7 @@ test('has', () => {
 test('has with factory', () => {
     const container = new MinimalContainer();
 
-    container.factory('id', () => {
+    container.factory('id', (): {} => {
         return {};
     });
 

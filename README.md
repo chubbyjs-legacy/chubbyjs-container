@@ -54,9 +54,11 @@ import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterfa
 const container = new MinimalContainer();
 
 container.factories(
-    new Map<string, FactoryInterface>().set(MyService.name, (container: PsrContainerInterface) => {
-        return new MyService(container.get<Logger>(Logger.name));
-    }),
+    new Map<string, FactoryInterface>()
+        .set(MyService.name, (container: PsrContainerInterface): MyService => {
+            return new MyService(container.get<Logger>(Logger.name));
+        }
+    ),
 );
 ```
 
@@ -72,27 +74,30 @@ import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterfa
 const container = new MinimalContainer();
 
 // new
-container.factory(MyService.name, (container: PsrContainerInterface) => {
+container.factory(MyService.name, (container: PsrContainerInterface): MyService => {
     return new MyService(container.get<Logger>(Logger.name));
 });
 
 // existing (replace)
-container.factory(MyService.name, (container: PsrContainerInterface) => {
+container.factory(MyService.name, (container: PsrContainerInterface): MyService => {
     return new MyService(container.get<Logger>(Logger.name));
 });
 
 // existing (extend)
-container.factory(MyService.name, (container: PsrContainerInterface, previous?: FactoryInterface) => {
-    if (!previous) {
-        throw 'Missing service';
+container.factory(
+    MyService.name,
+    (container: PsrContainerInterface, previous?: FactoryInterface): MyService => {
+        if (!previous) {
+            throw 'Missing service';
+        }
+
+        const myService: MyService = previous(container);
+
+        myService.setLogger(Logger.name);
+
+        return myService;
     }
-
-    const myService: MyService = previous(container);
-
-    myService.setLogger(Logger.name);
-
-    return myService;
-});
+);
 ```
 
 #### Factory with Parameter
@@ -146,9 +151,11 @@ import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterfa
 const container = new Container();
 
 container.prototypeFactories(
-    new Map<string, FactoryInterface>().set(MyService.name, (container: PsrContainerInterface) => {
-        return new MyService(container.get<Logger>(Logger.name));
-    }),
+    new Map<string, FactoryInterface>()
+        .set(MyService.name, (container: PsrContainerInterface): MyService => {
+            return new MyService(container.get<Logger>(Logger.name));
+        }
+    ),
 );
 ```
 
@@ -166,27 +173,36 @@ import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterfa
 const container = new Container();
 
 // new
-container.prototypeFactory(MyService.name, (container: PsrContainerInterface) => {
-    return new MyService(container.get<Logger>(Logger.name));
-});
+container.prototypeFactory(
+    MyService.name,
+    (container: PsrContainerInterface): MyService => {
+        return new MyService(container.get<Logger>(Logger.name));
+    }
+);
 
 // existing (replace)
-container.prototypeFactory(MyService.name, (container: PsrContainerInterface) => {
-    return new MyService(container.get<Logger>(Logger.name));
-});
+container.prototypeFactory(
+    MyService.name,
+    (container: PsrContainerInterface): MyService => {
+        return new MyService(container.get<Logger>(Logger.name));
+    }
+);
 
 // existing (extend)
-container.prototypeFactory(MyService.name, (container: PsrContainerInterface, previous?: FactoryInterface) => {
-    if (!previous) {
-        throw 'Missing service';
+container.prototypeFactory(
+    MyService.name,
+    (container: PsrContainerInterface, previous?: FactoryInterface): MyService => {
+        if (!previous) {
+            throw 'Missing service';
+        }
+
+        const myService: MyService = previous(container);
+
+        myService.setLogger(Logger.name);
+
+        return myService;
     }
-
-    const myService: MyService = previous(container);
-
-    myService.setLogger(Logger.name);
-
-    return myService;
-});
+);
 ```
 
 ## Copyright

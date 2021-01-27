@@ -4,7 +4,7 @@ import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterfa
 
 test('construct', () => {
     const container = new Container(
-        new Map<string, FactoryInterface>().set('id', () => {
+        new Map<string, FactoryInterface>().set('id', (): {} => {
             return {};
         }),
     );
@@ -16,7 +16,7 @@ test('factories', () => {
     const container = new Container();
 
     container.factories(
-        new Map<string, FactoryInterface>().set('id', () => {
+        new Map<string, FactoryInterface>().set('id', (): {} => {
             return {};
         }),
     );
@@ -27,12 +27,12 @@ test('factories', () => {
 test('factory with existing prototype factory', () => {
     const container = new Container();
 
-    container.prototypeFactory('id', () => {
+    container.prototypeFactory('id', (): {} => {
         return {};
     });
 
     expect(() =>
-        container.factory('id', () => {
+        container.factory('id', (): {} => {
             return {};
         }),
     ).toThrow('Factory with id "id" already exists as "prototype factory"');
@@ -41,7 +41,7 @@ test('factory with existing prototype factory', () => {
 test('factory', () => {
     const container = new Container();
 
-    container.factory('id', () => {
+    container.factory('id', (): {} => {
         return {};
     });
 
@@ -51,25 +51,38 @@ test('factory', () => {
 test('factory extend', () => {
     const container = new Container();
 
-    container.factory('id', () => {
-        return new Map<string, string>().set('key1', 'value1');
-    });
-    container.factory('id', (container: PsrContainerInterface, previous?: FactoryInterface) => {
-        if (previous) {
+    container.factory(
+        'id',
+        (): Map<string, string> => {
+            return new Map<string, string>().set('key1', 'value1');
+        },
+    );
+    container.factory(
+        'id',
+        (container: PsrContainerInterface, previous?: FactoryInterface): Map<string, string> => {
+            if (!previous) {
+                throw Error('Missing previous');
+            }
+
             const object: Map<string, string> = previous(container);
             object.set('key2', 'value2');
 
             return object;
-        }
-    });
-    container.factory('id', (container: PsrContainerInterface, previous?: FactoryInterface) => {
-        if (previous) {
+        },
+    );
+    container.factory(
+        'id',
+        (container: PsrContainerInterface, previous?: FactoryInterface): Map<string, string> => {
+            if (!previous) {
+                throw Error('Missing previous');
+            }
+
             const object: Map<string, string> = previous(container);
             object.set('key3', 'value3');
 
             return object;
-        }
-    });
+        },
+    );
 
     const service: Map<string, string> = container.get('id');
 
@@ -84,17 +97,25 @@ test('factory replace', () => {
     container.factory('id', () => {
         throw new Error('Should not be called!');
     });
-    container.factory('id', () => {
-        return new Map<string, string>().set('key1', 'value1');
-    });
-    container.factory('id', (container: PsrContainerInterface, previous?: FactoryInterface) => {
-        if (previous) {
+    container.factory(
+        'id',
+        (): Map<string, string> => {
+            return new Map<string, string>().set('key1', 'value1');
+        },
+    );
+    container.factory(
+        'id',
+        (container: PsrContainerInterface, previous?: FactoryInterface): Map<string, string> => {
+            if (!previous) {
+                throw Error('Missing previous');
+            }
+
             const object: Map<string, string> = previous(container);
             object.set('key2', 'value2');
 
             return object;
-        }
-    });
+        },
+    );
 
     const service: Map<string, string> = container.get('id');
 
@@ -105,13 +126,13 @@ test('factory replace', () => {
 test('factory replace after service instanciated', () => {
     const container = new Container();
 
-    container.factory('id', () => {
+    container.factory('id', (): {} => {
         return {};
     });
 
     const service = container.get('id');
 
-    container.factory('id', () => {
+    container.factory('id', (): {} => {
         return {};
     });
 
@@ -122,7 +143,7 @@ test('prototype factories', () => {
     const container = new Container();
 
     container.prototypeFactories(
-        new Map<string, FactoryInterface>().set('id', () => {
+        new Map<string, FactoryInterface>().set('id', (): {} => {
             return {};
         }),
     );
@@ -133,12 +154,12 @@ test('prototype factories', () => {
 test('prototype factory with existing factory', () => {
     const container = new Container();
 
-    container.factory('id', () => {
+    container.factory('id', (): {} => {
         return {};
     });
 
     expect(() =>
-        container.prototypeFactory('id', () => {
+        container.prototypeFactory('id', (): {} => {
             return {};
         }),
     ).toThrow('Factory with id "id" already exists as "factory"');
@@ -147,7 +168,7 @@ test('prototype factory with existing factory', () => {
 test('prototype factory', () => {
     const container = new Container();
 
-    container.prototypeFactory('id', () => {
+    container.prototypeFactory('id', (): {} => {
         return {};
     });
 
@@ -157,25 +178,38 @@ test('prototype factory', () => {
 test('prototype factory extend', () => {
     const container = new Container();
 
-    container.prototypeFactory('id', () => {
-        return new Map<string, string>().set('key1', 'value1');
-    });
-    container.prototypeFactory('id', (container: PsrContainerInterface, previous?: FactoryInterface) => {
-        if (previous) {
+    container.prototypeFactory(
+        'id',
+        (): Map<string, string> => {
+            return new Map<string, string>().set('key1', 'value1');
+        },
+    );
+    container.prototypeFactory(
+        'id',
+        (container: PsrContainerInterface, previous?: FactoryInterface): Map<string, string> => {
+            if (!previous) {
+                throw Error('Missing previous');
+            }
+
             const object: Map<string, string> = previous(container);
             object.set('key2', 'value2');
 
             return object;
-        }
-    });
-    container.prototypeFactory('id', (container: PsrContainerInterface, previous?: FactoryInterface) => {
-        if (previous) {
+        },
+    );
+    container.prototypeFactory(
+        'id',
+        (container: PsrContainerInterface, previous?: FactoryInterface): Map<string, string> => {
+            if (!previous) {
+                throw Error('Missing previous');
+            }
+
             const object: Map<string, string> = previous(container);
             object.set('key3', 'value3');
 
             return object;
-        }
-    });
+        },
+    );
 
     const service: Map<string, string> = container.get('id');
 
@@ -190,16 +224,21 @@ test('prototype factory replace', () => {
     container.prototypeFactory('id', () => {
         throw new Error('Should not be called!');
     });
-    container.prototypeFactory('id', () => {
-        return new Map<string, string>().set('key1', 'value1');
-    });
+    container.prototypeFactory(
+        'id',
+        (): Map<string, string> => {
+            return new Map<string, string>().set('key1', 'value1');
+        },
+    );
     container.prototypeFactory('id', (container: PsrContainerInterface, previous?: FactoryInterface) => {
-        if (previous) {
-            const object: Map<string, string> = previous(container);
-            object.set('key2', 'value2');
-
-            return object;
+        if (!previous) {
+            throw Error('Missing previous');
         }
+
+        const object: Map<string, string> = previous(container);
+        object.set('key2', 'value2');
+
+        return object;
     });
 
     const service: Map<string, string> = container.get('id');
@@ -217,7 +256,7 @@ test('get with missing id', () => {
 test('get with factory', () => {
     const container = new Container();
 
-    container.factory('id', () => {
+    container.factory('id', (): {} => {
         return {};
     });
 
@@ -231,7 +270,7 @@ test('get with factory', () => {
 test('get with prototype factory', () => {
     const container = new Container();
 
-    container.prototypeFactory('id', () => {
+    container.prototypeFactory('id', (): {} => {
         return {};
     });
 
@@ -271,7 +310,7 @@ test('has', () => {
 test('has with factory', () => {
     const container = new Container();
 
-    container.factory('id', () => {
+    container.factory('id', (): {} => {
         return {};
     });
 
@@ -281,7 +320,7 @@ test('has with factory', () => {
 test('has with prototype factory', () => {
     const container = new Container();
 
-    container.prototypeFactory('id', () => {
+    container.prototypeFactory('id', (): {} => {
         return {};
     });
 
