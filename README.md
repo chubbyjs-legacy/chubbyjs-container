@@ -55,7 +55,7 @@ const container = new MinimalContainer();
 
 container.factories(
     new Map<string, FactoryInterface>().set(MyService.name, (container: PsrContainerInterface) => {
-        return new MyService(container.get(Logger.name));
+        return new MyService(container.get<Logger>(Logger.name));
     }),
 );
 ```
@@ -73,12 +73,12 @@ const container = new MinimalContainer();
 
 // new
 container.factory(MyService.name, (container: PsrContainerInterface) => {
-    return new MyService(container.get(Logger.name));
+    return new MyService(container.get<Logger>(Logger.name));
 });
 
 // existing (replace)
 container.factory(MyService.name, (container: PsrContainerInterface) => {
-    return new MyService(container.get(Logger.name));
+    return new MyService(container.get<Logger>(Logger.name));
 });
 
 // existing (extend)
@@ -114,7 +114,7 @@ import MyService from './Service/MyService';
 
 const container = new MinimalContainer();
 
-container.get(MyService.name);
+container.get<MyService>(MyService.name);
 ```
 
 #### Has
@@ -147,7 +147,7 @@ const container = new Container();
 
 container.prototypeFactories(
     new Map<string, FactoryInterface>().set(MyService.name, (container: PsrContainerInterface) => {
-        return new MyService(container.get(Logger.name));
+        return new MyService(container.get<Logger>(Logger.name));
     }),
 );
 ```
@@ -167,12 +167,12 @@ const container = new Container();
 
 // new
 container.prototypeFactory(MyService.name, (container: PsrContainerInterface) => {
-    return new MyService(container.get(Logger.name));
+    return new MyService(container.get<Logger>(Logger.name));
 });
 
 // existing (replace)
 container.prototypeFactory(MyService.name, (container: PsrContainerInterface) => {
-    return new MyService(container.get(Logger.name));
+    return new MyService(container.get<Logger>(Logger.name));
 });
 
 // existing (extend)
