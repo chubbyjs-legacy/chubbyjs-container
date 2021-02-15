@@ -1,5 +1,6 @@
 # chubbyjs-container
 
+[![CI](https://github.com/chubbyjs/chubbyjs-container/workflows/CI/badge.svg?branch=master)](https://github.com/chubbyjs/chubbyjs-container/actions?query=workflow%3ACI)
 [![Build Status](https://api.travis-ci.org/chubbyjs/chubbyjs-container.png?branch=master)](https://travis-ci.org/chubbyjs/chubbyjs-container)
 [![Coverage Status](https://coveralls.io/repos/github/chubbyjs/chubbyjs-container/badge.svg?branch=master)](https://coveralls.io/github/chubbyjs/chubbyjs-container?branch=master)
 [![Infection MSI](https://badge.stryker-mutator.io/github.com/chubbyjs/chubbyjs-container/master)](https://dashboard.stryker-mutator.io/reports/github.com/chubbyjs/chubbyjs-container/master)
