@@ -208,7 +208,7 @@ container.prototypeFactory(
 
 ## Copyright
 
-Dominik Zogg 2020
+Dominik Zogg 2021
 
 [1]: https://www.npmjs.com/package/@chubbyjs/chubbyjs-container
 
