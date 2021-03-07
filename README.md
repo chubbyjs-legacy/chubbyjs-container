@@ -19,7 +19,7 @@
 
 ## Description
 
-A PSR-11 container implementation.
+A minimal Dependency Injection Container (DIC) which implements PSR-11.
 
 ## Requirements
 
