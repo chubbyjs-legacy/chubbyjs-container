@@ -94,7 +94,7 @@ container.factory(
 
         const myService: MyService = previous(container);
 
-        myService.setLogger(Logger.name);
+        myService.setLogger(container.get<Logger>(Logger.name));
 
         return myService;
     }
@@ -199,7 +199,7 @@ container.prototypeFactory(
 
         const myService: MyService = previous(container);
 
-        myService.setLogger(Logger.name);
+        myService.setLogger(container.get<Logger>(Logger.name));
 
         return myService;
     }
