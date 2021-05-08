@@ -55,11 +55,11 @@ import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterfa
 const container = new MinimalContainer();
 
 container.factories(
-    new Map<string, FactoryInterface>()
-        .set(MyService.name, (container: PsrContainerInterface): MyService => {
+    new Map<string, FactoryInterface>([
+        [MyService.name, (container: PsrContainerInterface): MyService => {
             return new MyService(container.get<Logger>(Logger.name));
-        }
-    ),
+        }]
+    ])
 );
 ```
 
@@ -152,11 +152,11 @@ import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterfa
 const container = new Container();
 
 container.prototypeFactories(
-    new Map<string, FactoryInterface>()
-        .set(MyService.name, (container: PsrContainerInterface): MyService => {
+    new Map<string, FactoryInterface>([
+        [MyService.name, (container: PsrContainerInterface): MyService => {
             return new MyService(container.get<Logger>(Logger.name));
-        }
-    ),
+        }]
+    ])
 );
 ```
 

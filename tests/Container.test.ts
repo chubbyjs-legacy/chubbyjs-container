@@ -4,9 +4,14 @@ import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterfa
 
 test('construct', () => {
     const container = new Container(
-        new Map<string, FactoryInterface>().set('id', (): {} => {
-            return {};
-        }),
+        new Map<string, FactoryInterface>([
+            [
+                'id',
+                (): {} => {
+                    return {};
+                },
+            ],
+        ]),
     );
 
     expect(container.get('id')).toEqual({});
@@ -16,9 +21,14 @@ test('factories', () => {
     const container = new Container();
 
     container.factories(
-        new Map<string, FactoryInterface>().set('id', (): {} => {
-            return {};
-        }),
+        new Map<string, FactoryInterface>([
+            [
+                'id',
+                (): {} => {
+                    return {};
+                },
+            ],
+        ]),
     );
 
     expect(container.get('id')).toEqual({});
@@ -54,7 +64,7 @@ test('factory extend', () => {
     container.factory(
         'id',
         (): Map<string, string> => {
-            return new Map<string, string>().set('key1', 'value1');
+            return new Map<string, string>([['key1', 'value1']]);
         },
     );
     container.factory(
@@ -64,10 +74,10 @@ test('factory extend', () => {
                 throw Error('Missing previous');
             }
 
-            const object: Map<string, string> = previous(container);
-            object.set('key2', 'value2');
+            const service: Map<string, string> = previous(container);
+            service.set('key2', 'value2');
 
-            return object;
+            return service;
         },
     );
     container.factory(
@@ -77,10 +87,10 @@ test('factory extend', () => {
                 throw Error('Missing previous');
             }
 
-            const object: Map<string, string> = previous(container);
-            object.set('key3', 'value3');
+            const service: Map<string, string> = previous(container);
+            service.set('key3', 'value3');
 
-            return object;
+            return service;
         },
     );
 
@@ -100,7 +110,7 @@ test('factory replace', () => {
     container.factory(
         'id',
         (): Map<string, string> => {
-            return new Map<string, string>().set('key1', 'value1');
+            return new Map<string, string>([['key1', 'value1']]);
         },
     );
     container.factory(
@@ -110,10 +120,10 @@ test('factory replace', () => {
                 throw Error('Missing previous');
             }
 
-            const object: Map<string, string> = previous(container);
-            object.set('key2', 'value2');
+            const service: Map<string, string> = previous(container);
+            service.set('key2', 'value2');
 
-            return object;
+            return service;
         },
     );
 
@@ -143,9 +153,14 @@ test('prototype factories', () => {
     const container = new Container();
 
     container.prototypeFactories(
-        new Map<string, FactoryInterface>().set('id', (): {} => {
-            return {};
-        }),
+        new Map<string, FactoryInterface>([
+            [
+                'id',
+                (): {} => {
+                    return {};
+                },
+            ],
+        ]),
     );
 
     expect(container.get('id')).toEqual({});
@@ -181,7 +196,7 @@ test('prototype factory extend', () => {
     container.prototypeFactory(
         'id',
         (): Map<string, string> => {
-            return new Map<string, string>().set('key1', 'value1');
+            return new Map<string, string>([['key1', 'value1']]);
         },
     );
     container.prototypeFactory(
@@ -227,7 +242,7 @@ test('prototype factory replace', () => {
     container.prototypeFactory(
         'id',
         (): Map<string, string> => {
-            return new Map<string, string>().set('key1', 'value1');
+            return new Map<string, string>([['key1', 'value1']]);
         },
     );
     container.prototypeFactory('id', (container: PsrContainerInterface, previous?: FactoryInterface) => {

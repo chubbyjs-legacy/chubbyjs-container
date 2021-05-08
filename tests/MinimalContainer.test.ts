@@ -50,10 +50,10 @@ test('factory extend', () => {
                 throw Error('Missing previous');
             }
 
-            const object: Map<string, string> = previous(container);
-            object.set('key2', 'value2');
+            const service: Map<string, string> = previous(container);
+            service.set('key2', 'value2');
 
-            return object;
+            return service;
         },
     );
     container.factory(
@@ -63,10 +63,10 @@ test('factory extend', () => {
                 throw Error('Missing previous');
             }
 
-            const object: Map<string, string> = previous(container);
-            object.set('key3', 'value3');
+            const service: Map<string, string> = previous(container);
+            service.set('key3', 'value3');
 
-            return object;
+            return service;
         },
     );
 
@@ -96,10 +96,10 @@ test('factory replace', () => {
                 throw Error('Missing previous');
             }
 
-            const object: Map<string, string> = previous(container);
-            object.set('key2', 'value2');
+            const service: Map<string, string> = previous(container);
+            service.set('key2', 'value2');
 
-            return object;
+            return service;
         },
     );
 
