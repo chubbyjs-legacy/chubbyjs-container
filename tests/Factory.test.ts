@@ -1,10 +1,13 @@
-import { Mock } from 'moq.ts';
+import { expect, test } from '@jest/globals';
 import Factory from '../src/Factory';
 import FactoryInterface from '../src/FactoryInterface';
 import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterface';
+import MockByCalls from '@chubbyjs/chubbyjs-mock/dist/MockByCalls';
 
 test('factory', () => {
-    const container = new Mock<PsrContainerInterface>().object();
+    const mockByCalls = new MockByCalls();
+
+    const container = mockByCalls.create<PsrContainerInterface>(class PsrContainer {}, []);
 
     const factory = Factory(
         (container: PsrContainerInterface, previous?: FactoryInterface) => {

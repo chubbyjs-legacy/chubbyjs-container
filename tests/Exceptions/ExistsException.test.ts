@@ -1,3 +1,4 @@
+import { expect, test } from '@jest/globals';
 import ExistsException from '../../src/Exceptions/ExistsException';
 
 test('create', () => {

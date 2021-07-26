@@ -1,3 +1,4 @@
+import { expect, test } from '@jest/globals';
 import FactoryInterface from '../src/FactoryInterface';
 import Container from '../src/Container';
 import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterface';

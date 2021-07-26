@@ -1,3 +1,4 @@
+import { expect, test } from '@jest/globals';
 import NotFoundException from '../../src/Exceptions/NotFoundException';
 
 test('create', () => {

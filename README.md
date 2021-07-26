@@ -22,15 +22,15 @@ A minimal Dependency Injection Container (DIC) which implements PSR-11.
 
 ## Requirements
 
- * node: 10
- * [@chubbyjs/psr-container][2]: ^1.0.0
+ * node: 12
+ * [@chubbyjs/psr-container][2]: ^1.0
 
 ## Installation
 
 Through [NPM](https://www.npmjs.com) as [@chubbyjs/chubbyjs-container][1].
 
 ```sh
-npm i @chubbyjs/chubbyjs-container@1.0
+npm i @chubbyjs/chubbyjs-container@1.0.7
 ```
 
 ## Usage
