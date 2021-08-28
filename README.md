@@ -30,7 +30,7 @@ A minimal Dependency Injection Container (DIC) which implements PSR-11.
 Through [NPM](https://www.npmjs.com) as [@chubbyjs/chubbyjs-container][1].
 
 ```sh
-npm i @chubbyjs/chubbyjs-container@1.0.7
+npm i @chubbyjs/chubbyjs-container@1.0.8
 ```
 
 ## Usage

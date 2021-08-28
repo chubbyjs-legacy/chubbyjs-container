@@ -11,8 +11,11 @@ class ContainerException implements PsrContainerExceptionInterface {
         this.stack = stack;
     }
 
-    public static create(id: string, previous: Error): ContainerException {
-        return new ContainerException(`Could not create service with id "${id}"`, previous.stack);
+    public static create(id: string, previous: unknown): ContainerException {
+        return new ContainerException(
+            `Could not create service with id "${id}"`,
+            previous instanceof Error ? previous.stack : undefined,
+        );
     }
 }
 
