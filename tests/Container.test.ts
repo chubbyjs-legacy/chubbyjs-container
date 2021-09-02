@@ -62,38 +62,29 @@ test('factory', () => {
 test('factory extend', () => {
     const container = new Container();
 
-    container.factory(
-        'id',
-        (): Map<string, string> => {
-            return new Map<string, string>([['key1', 'value1']]);
-        },
-    );
-    container.factory(
-        'id',
-        (container: PsrContainerInterface, previous?: FactoryInterface): Map<string, string> => {
-            if (!previous) {
-                throw Error('Missing previous');
-            }
+    container.factory('id', (): Map<string, string> => {
+        return new Map<string, string>([['key1', 'value1']]);
+    });
+    container.factory('id', (container: PsrContainerInterface, previous?: FactoryInterface): Map<string, string> => {
+        if (!previous) {
+            throw Error('Missing previous');
+        }
 
-            const service: Map<string, string> = previous(container);
-            service.set('key2', 'value2');
+        const service: Map<string, string> = previous(container);
+        service.set('key2', 'value2');
 
-            return service;
-        },
-    );
-    container.factory(
-        'id',
-        (container: PsrContainerInterface, previous?: FactoryInterface): Map<string, string> => {
-            if (!previous) {
-                throw Error('Missing previous');
-            }
+        return service;
+    });
+    container.factory('id', (container: PsrContainerInterface, previous?: FactoryInterface): Map<string, string> => {
+        if (!previous) {
+            throw Error('Missing previous');
+        }
 
-            const service: Map<string, string> = previous(container);
-            service.set('key3', 'value3');
+        const service: Map<string, string> = previous(container);
+        service.set('key3', 'value3');
 
-            return service;
-        },
-    );
+        return service;
+    });
 
     const service: Map<string, string> = container.get('id');
 
@@ -108,25 +99,19 @@ test('factory replace', () => {
     container.factory('id', () => {
         throw new Error('Should not be called!');
     });
-    container.factory(
-        'id',
-        (): Map<string, string> => {
-            return new Map<string, string>([['key1', 'value1']]);
-        },
-    );
-    container.factory(
-        'id',
-        (container: PsrContainerInterface, previous?: FactoryInterface): Map<string, string> => {
-            if (!previous) {
-                throw Error('Missing previous');
-            }
+    container.factory('id', (): Map<string, string> => {
+        return new Map<string, string>([['key1', 'value1']]);
+    });
+    container.factory('id', (container: PsrContainerInterface, previous?: FactoryInterface): Map<string, string> => {
+        if (!previous) {
+            throw Error('Missing previous');
+        }
 
-            const service: Map<string, string> = previous(container);
-            service.set('key2', 'value2');
+        const service: Map<string, string> = previous(container);
+        service.set('key2', 'value2');
 
-            return service;
-        },
-    );
+        return service;
+    });
 
     const service: Map<string, string> = container.get('id');
 
@@ -194,12 +179,9 @@ test('prototype factory', () => {
 test('prototype factory extend', () => {
     const container = new Container();
 
-    container.prototypeFactory(
-        'id',
-        (): Map<string, string> => {
-            return new Map<string, string>([['key1', 'value1']]);
-        },
-    );
+    container.prototypeFactory('id', (): Map<string, string> => {
+        return new Map<string, string>([['key1', 'value1']]);
+    });
     container.prototypeFactory(
         'id',
         (container: PsrContainerInterface, previous?: FactoryInterface): Map<string, string> => {
@@ -240,12 +222,9 @@ test('prototype factory replace', () => {
     container.prototypeFactory('id', () => {
         throw new Error('Should not be called!');
     });
-    container.prototypeFactory(
-        'id',
-        (): Map<string, string> => {
-            return new Map<string, string>([['key1', 'value1']]);
-        },
-    );
+    container.prototypeFactory('id', (): Map<string, string> => {
+        return new Map<string, string>([['key1', 'value1']]);
+    });
     container.prototypeFactory('id', (container: PsrContainerInterface, previous?: FactoryInterface) => {
         if (!previous) {
             throw Error('Missing previous');

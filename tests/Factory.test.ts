@@ -2,7 +2,7 @@ import { expect, test } from '@jest/globals';
 import Factory from '../src/Factory';
 import FactoryInterface from '../src/FactoryInterface';
 import PsrContainerInterface from '@chubbyjs/psr-container/dist/ContainerInterface';
-import MockByCalls from '@chubbyjs/chubbyjs-mock/dist/MockByCalls';
+import MockByCalls, { mockByCallsUsed } from '@chubbyjs/chubbyjs-mock/dist/MockByCalls';
 
 test('factory', () => {
     const mockByCalls = new MockByCalls();
@@ -31,4 +31,6 @@ test('factory', () => {
     expect(service).toBeInstanceOf(Map);
 
     expect(service.get('key')).toBe('value');
+
+    expect(mockByCallsUsed(container)).toBe(true);
 });
