@@ -3,6 +3,7 @@
 [![CI](https://github.com/chubbyjs/chubbyjs-container/workflows/CI/badge.svg?branch=master)](https://github.com/chubbyjs/chubbyjs-container/actions?query=workflow%3ACI)
 [![Coverage Status](https://coveralls.io/repos/github/chubbyjs/chubbyjs-container/badge.svg?branch=master)](https://coveralls.io/github/chubbyjs/chubbyjs-container?branch=master)
 [![Infection MSI](https://badge.stryker-mutator.io/github.com/chubbyjs/chubbyjs-container/master)](https://dashboard.stryker-mutator.io/reports/github.com/chubbyjs/chubbyjs-container/master)
+[![npm-version](https://img.shields.io/npm/v/@chubbyjs/chubbyjs-container.svg)](https://www.npmjs.com/package/@chubbyjs/chubbyjs-container)
 
 [![bugs](https://sonarcloud.io/api/project_badges/measure?project=chubbyjs_chubbyjs-container&metric=bugs)](https://sonarcloud.io/dashboard?id=chubbyjs_chubbyjs-container)
 [![code_smells](https://sonarcloud.io/api/project_badges/measure?project=chubbyjs_chubbyjs-container&metric=code_smells)](https://sonarcloud.io/dashboard?id=chubbyjs_chubbyjs-container)
