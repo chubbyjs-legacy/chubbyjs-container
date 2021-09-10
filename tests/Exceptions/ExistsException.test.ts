@@ -6,5 +6,4 @@ test('create', () => {
 
     expect(exception.name).toBe('ExistsException');
     expect(exception.message).toBe('Factory with id "id" already exists as "prototype factory"');
-    expect(exception.stack).toBe(undefined);
 });

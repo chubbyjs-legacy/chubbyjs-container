@@ -1,21 +1,16 @@
 import PsrContainerExceptionInterface from '@chubbyjs/psr-container/dist/ContainerExceptionInterface';
 
-class ContainerException implements PsrContainerExceptionInterface {
-    name: string;
-    message: string;
-    stack?: string;
+class ContainerException extends Error implements PsrContainerExceptionInterface {
+    previous?: unknown;
 
-    public constructor(message: string, stack?: string) {
+    private constructor(message: string, previous?: unknown) {
+        super(message);
         this.name = 'ContainerException';
-        this.message = message;
-        this.stack = stack;
+        this.previous = previous;
     }
 
     public static create(id: string, previous: unknown): ContainerException {
-        return new ContainerException(
-            `Could not create service with id "${id}"`,
-            previous instanceof Error ? previous.stack : undefined,
-        );
+        return new ContainerException(`Could not create service with id "${id}"`, previous);
     }
 }
 

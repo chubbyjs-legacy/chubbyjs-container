@@ -6,5 +6,4 @@ test('create', () => {
 
     expect(exception.name).toBe('NotFoundException');
     expect(exception.message).toBe('There is no service with id "id"');
-    expect(exception.stack).toBe(undefined);
 });
